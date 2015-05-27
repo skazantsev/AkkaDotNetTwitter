@@ -1,2 +1,2 @@
-# AkkaDotNetLearningProject
-Akka.Net Sample Project
+# AkkaDotNet Chatter
+A tiny Twitter-like application built with Akka.Net
