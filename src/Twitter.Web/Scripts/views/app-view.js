@@ -26,18 +26,17 @@
             this.$usersToFollowRoot.html(this.peopleTemplate({
                 usersToFollow: app.usersToFollow.toJSON()
             }));
+            return this;
         },
 
         followUser: function (e) {
             var userModel = this.getUserModel($(e.currentTarget));
-            userModel.set('isFollowed', true);
-            userModel.save();
+            userModel.save({ 'isFollowed': true }, { wait: true });
         },
 
         unfollowUser: function (e) {
             var userModel = this.getUserModel($(e.currentTarget));
-            userModel.set('isFollowed', false);
-            userModel.save();
+            userModel.save({ 'isFollowed': false }, { wait: true });
         },
 
         getUserModel: function ($target) {
