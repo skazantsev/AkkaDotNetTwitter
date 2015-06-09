@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TwitterFeed.Service")]
-[assembly: AssemblyProduct("TwitterFeed.Service")]
+[assembly: AssemblyTitle("Twitter.Service")]
+[assembly: AssemblyProduct("Twitter.Service")]
 [assembly: AssemblyCopyright("Copyright © 2015 skazantsev")]
 [assembly: ComVisible(false)]
 [assembly: Guid("15139928-874e-421e-ad98-54742707d1bb")]

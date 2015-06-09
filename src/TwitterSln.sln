@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A96B65
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterFeed.Service", "TwitterFeed.Service\TwitterFeed.Service.csproj", "{9034C995-D6CF-4492-BC1D-9EB147EB85BA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Shared", "Twitter.Shared\Twitter.Shared.csproj", "{AF49AD21-C56F-4DA2-A426-D4F75C591641}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Web", "Twitter.Web\Twitter.Web.csproj", "{75FDFA70-79FA-43A1-9F86-1C99666676DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Service", "Twitter.Service\Twitter.Service.csproj", "{9034C995-D6CF-4492-BC1D-9EB147EB85BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF49AD21-C56F-4DA2-A426-D4F75C591641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF49AD21-C56F-4DA2-A426-D4F75C591641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF49AD21-C56F-4DA2-A426-D4F75C591641}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -34,6 +30,10 @@ Global
 		{75FDFA70-79FA-43A1-9F86-1C99666676DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75FDFA70-79FA-43A1-9F86-1C99666676DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75FDFA70-79FA-43A1-9F86-1C99666676DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9034C995-D6CF-4492-BC1D-9EB147EB85BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

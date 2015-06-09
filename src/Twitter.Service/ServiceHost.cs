@@ -1,15 +1,15 @@
 ﻿using Akka.Actor;
 using Topshelf;
 
-namespace TwitterFeed.Service
+namespace Twitter.Service
 {
-    public class FeedService : ServiceControl
+    public class ServiceHost : ServiceControl
     {
         public ActorSystem ActorSystem { get; private set; }
 
         public bool Start(HostControl hostControl)
         {
-            ActorSystem = ActorSystem.Create("feedservice");
+            ActorSystem = ActorSystem.Create("twitterservice");
             return true;
         }
 
