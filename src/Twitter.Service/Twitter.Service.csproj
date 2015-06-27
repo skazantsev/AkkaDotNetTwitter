@@ -37,9 +37,6 @@
     <Reference Include="Akka">
       <HintPath>..\packages\Akka.1.0.1\lib\net45\Akka.dll</HintPath>
     </Reference>
-    <Reference Include="Akka.Cluster">
-      <HintPath>..\packages\Akka.Cluster.1.0.1-pre1504282013\lib\net45\Akka.Cluster.dll</HintPath>
-    </Reference>
     <Reference Include="Akka.Remote">
       <HintPath>..\packages\Akka.Remote.1.0.1\lib\net45\Akka.Remote.dll</HintPath>
     </Reference>
@@ -72,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\ApiActor.cs" />
+    <Compile Include="Actors\SystemActors.cs" />
     <Compile Include="ServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

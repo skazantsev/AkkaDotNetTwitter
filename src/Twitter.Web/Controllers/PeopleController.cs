@@ -1,37 +1,28 @@
-﻿using System;
+﻿using Akka.Actor;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
-using Twitter.Web.Business;
+using Twitter.Shared.Messages;
+using Twitter.Web.Actors;
 using Twitter.Web.Models;
 
 namespace Twitter.Web.Controllers
 {
     public class PeopleController : ApiController
     {
-        private readonly FollowingService _followingService;
-
-        public PeopleController()
-        {
-            _followingService = new FollowingService();
-        }
-
         // GET api/people
-        public IEnumerable<UserToFollow> Get()
+        public IEnumerable<UserModel> Get()
         {
-            return _followingService.GetUsersToFollow();
+            var users =
+                SystemActors.RemoteApiActor.Ask<List<string>>(new GetUsersCommand(), TimeSpan.FromSeconds(5)).Result;
+            return users.Select(x => new UserModel {Username = x, IsFollowed = false}).ToList();
         }
 
         // POST api/people/{id}
-        public void Put(Guid id, [FromBody]UserToFollow user)
+        public void Put(Guid id, [FromBody]UserModel user)
         {
-            if (user.IsFollowed)
-            {
-                _followingService.Follow(id);
-            }
-            else
-            {
-                _followingService.Unfollow(id);
-            }
+            // do nothing
         }
     }
 }

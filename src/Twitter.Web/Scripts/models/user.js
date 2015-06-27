@@ -2,11 +2,10 @@
 
 (function () {
     'use strict';
-    app.UserToFollow = Backbone.Model.extend({
-        idAttribute: 'userId',
+    app.User = Backbone.Model.extend({
+        idAttribute: 'username',
 
         defaults: {
-            nickname: '',
             isFollowed: false
         }
     });

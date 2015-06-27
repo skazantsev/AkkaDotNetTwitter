@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Twitter.Web
@@ -12,6 +13,7 @@ namespace Twitter.Web
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.Formatting = Formatting.Indented;
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             config.MapHttpAttributeRoutes();

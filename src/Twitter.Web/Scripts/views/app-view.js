@@ -6,7 +6,7 @@
     app.AppView = Backbone.View.extend({
         el: '#twitterApp',
 
-        peopleTemplate: _.template($('#peopleTemplate').html()),
+        usersTemplate: _.template($('#usersTemplate').html()),
 
         events: {
             'click .js-follow-btn': 'followUser',
@@ -14,17 +14,25 @@
         },
 
         initialize: function () {
-            this.$usersToFollowRoot = this.$('#usersToFollowRoot');
+            this.userHub = $.connection.userHub;
+            this.userHub.client.userConnected = function (username) {
+                app.users.add(new app.User({ username: username, isFollowed: false }));
+            };
 
-            this.listenTo(app.usersToFollow, 'reset', this.render);
-            this.listenTo(app.usersToFollow, 'change', this.render);
+            $.connection.hub.start().done(function () {
+                app.users.fetch({ reset: true });
+            });
 
-            app.usersToFollow.fetch({ reset: true });
+            this.$usersRoot = this.$('#users');
+
+            this.listenTo(app.users, 'add', this.render);
+            this.listenTo(app.users, 'change', this.render);
+            this.listenTo(app.users, 'reset', this.render);
         },
 
-        render: function () {
-            this.$usersToFollowRoot.html(this.peopleTemplate({
-                usersToFollow: app.usersToFollow.toJSON()
+        render: function() {
+            this.$usersRoot.html(this.usersTemplate({
+                users: app.users.toJSON()
             }));
             return this;
         },
@@ -40,9 +48,8 @@
         },
 
         getUserModel: function ($target) {
-            var userId = $target.closest('.js-user-row').find('.js-user-id').val();
-            return app.usersToFollow.get(userId);
+            var username = $target.closest('.js-user-row').find('.js-username').val();
+            return app.users.get(username);
         }
-
     });
 })(jQuery);

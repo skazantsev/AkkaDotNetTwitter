@@ -1,19 +1,47 @@
 ﻿using Akka.Actor;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using Twitter.Shared.Business;
+using Twitter.Shared.Messages;
 
 namespace Twitter.Service.Actors
 {
     public class ApiActor : ReceiveActor
     {
-        // follow user
+        public static readonly ConcurrentDictionary<string, List<UserSession>> Users = new ConcurrentDictionary<string, List<UserSession>>();
 
-        // unfollow user
+        public ApiActor()
+        {
+            Receive<StartNewSessionCommand>(x => ConnectUserImpl(x));
 
-        // get following list
+            Receive<GetUsersCommand>(x => Sender.Tell(Users.Keys.ToList()));
+        }
 
-        // get followers
+        #region private messages
 
-        // publish message
+        private void ConnectUserImpl(StartNewSessionCommand command)
+        {
+            var username = command.UserSession.Username;
+            var userSessions = Users.GetOrAdd(command.UserSession.Username, new List<UserSession>());
+            userSessions.Add(new UserSession(username, command.UserSession.Requestor));
 
-        // get messages
+            if (userSessions.Count <= 1)
+            {
+                BroadcastNewUserConnected(username);
+            }
+        }
+
+        private void BroadcastNewUserConnected(string username)
+        {
+            var broadcastTo = Users.SelectMany(x => x.Value).Where(x => !x.Requestor.Equals(ActorRefs.Nobody));
+
+            foreach (var session in broadcastTo)
+            {
+                session.Requestor.Tell(new NewUserConnected(username));
+            }
+        }
+
+        #endregion
     }
 }

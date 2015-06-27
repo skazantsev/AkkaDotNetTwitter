@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-4">
             <h2 class="text-center">PEOPLE</h2>
-            <div id="usersToFollowRoot" class="container">
+            <div id="users" class="container">
                 
             </div>
     </div>
@@ -23,12 +23,12 @@
 @section scripts {
     @Scripts.Render("~/bundles/signalr")
     <script src="~/signalr/hubs"></script>
-    <script type="text/template" id="peopleTemplate">
-        <% _.each(usersToFollow, function(user) { %>
+    <script type="text/template" id="usersTemplate">
+        <% _.each(users, function(user) { %>
             <div class="js-user-row row">
-                <div class="col-md-8"><%= user.nickname %></div>
+                <div class="col-md-8"><%= user.username %></div>
                 <div class="col-md-4">
-                    <input name="userId" type="hidden" class="js-user-id" value="<%= user.userId %>" />
+                    <input name="username" type="hidden" class="js-username" value="<%= user.username %>" />
                     <% if (user.isFollowed) { %>
                         <button type="button" class="js-unfollow-btn btn btn-danger">Unfollow</button>
                     <% } else { %>
@@ -37,35 +37,14 @@
                 </div>
                 </div>
         <% }); %>
-    
     </script>
     @Scripts.Render("~/bundles/app")
 
-    @*<script>
+    <script>
         (function($) {
             window.actions = {
                 follow: '@Ajax.JavaScriptStringEncode(Url.Action("Follow", "Home"))'
             };
-
-            $(function() {
-                var hub = $.connection.hubName;
-
-                hub.client.methodName = function(param1, param2) {
-                };
-
-                $.connection.hub.start().done(function() {
-                    hub.server.serverMethodName(param1, param2);
-                });
-
-                $(document).on('click', '.js-follow-btn', function() {
-                    var $btn = $(this),
-                        $userId = $btn.closest('.js-user-row').find('.js-user-id').val();
-                    $.post(window.actions.follow, { userId: $userId })
-                        .done(function() {
-
-                        });
-                });
-            });
         })(jQuery);
-    </script>*@
+    </script>
 }
