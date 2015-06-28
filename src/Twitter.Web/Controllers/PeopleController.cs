@@ -16,7 +16,10 @@ namespace Twitter.Web.Controllers
         {
             var users =
                 SystemActors.RemoteApiActor.Ask<List<string>>(new GetUsersCommand(), TimeSpan.FromSeconds(5)).Result;
-            return users.Select(x => new UserModel {Username = x, IsFollowed = false}).ToList();
+            return
+                users.Except(new[] {User.Identity.Name})
+                    .Select(x => new UserModel {Username = x, IsFollowed = false})
+                    .ToList();
         }
 
         // POST api/people/{id}

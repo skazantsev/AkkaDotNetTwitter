@@ -1,4 +1,8 @@
-﻿using Akka.Actor;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading;
+using Akka.Actor;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -13,6 +17,8 @@ namespace Twitter.Web
 {
     public class MvcApplication : HttpApplication
     {
+        const string CurrentUsername = "Sergey";
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -34,8 +40,19 @@ namespace Twitter.Web
 
         private void InitUser()
         {
-            const string username = "Sergey";
-            SystemActors.SignalRActor.Tell(new StartNewSessionCommand(new UserSession(username, SystemActors.SignalRActor)));
+            SystemActors.SignalRActor.Tell(new StartNewSessionCommand(new UserSession(CurrentUsername, SystemActors.SignalRActor)));
+        }
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+            // fake auth
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, CurrentUsername)
+            };
+            var currentPrinciple = new ClaimsPrincipal(new ClaimsIdentity(claims));
+            HttpContext.Current.User = currentPrinciple;
+            Thread.CurrentPrincipal = currentPrinciple;
         }
     }
 }
