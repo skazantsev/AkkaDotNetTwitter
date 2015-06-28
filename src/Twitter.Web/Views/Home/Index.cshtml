@@ -14,9 +14,8 @@
         </div>
         <div class="col-md-4">
             <h2 class="text-center">PEOPLE</h2>
-            <div id="users" class="container">
-                
-            </div>
+            <div id="users" class="container"></div>
+        </div>
     </div>
 </div>
 
@@ -25,26 +24,18 @@
     <script src="~/signalr/hubs"></script>
     <script type="text/template" id="usersTemplate">
         <% _.each(users, function(user) { %>
-            <div class="js-user-row row">
-                <div class="col-md-8"><%= user.username %></div>
-                <div class="col-md-4">
-                    <input name="username" type="hidden" class="js-username" value="<%= user.username %>" />
-                    <% if (user.isFollowed) { %>
-                        <button type="button" class="js-unfollow-btn btn btn-danger">Unfollow</button>
-                    <% } else { %>
-                        <button type="button" class="js-follow-btn btn btn-success">Follow</button>
-                    <% } %>
-                </div>
-                </div>
+        <div class="js-user-row row">
+            <div class="col-md-8"><%= user.username %></div>
+            <div class="col-md-4">
+                <input name="username" type="hidden" class="js-username" value="<%= user.username %>" />
+                <% if (user.isFollowed) { %>
+                <button type="button" class="js-unfollow-btn btn btn-danger">Unfollow</button>
+                <% } else { %>
+                <button type="button" class="js-follow-btn btn btn-success">Follow</button>
+                <% } %>
+            </div>
+        </div>
         <% }); %>
     </script>
     @Scripts.Render("~/bundles/app")
-
-    <script>
-        (function($) {
-            window.actions = {
-                follow: '@Ajax.JavaScriptStringEncode(Url.Action("Follow", "Home"))'
-            };
-        })(jQuery);
-    </script>
 }

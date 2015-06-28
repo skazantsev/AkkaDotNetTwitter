@@ -50,10 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\RemoteApiActor.cs" />
+    <Compile Include="Business\UserData.cs" />
     <Compile Include="Business\UserSession.cs" />
-    <Compile Include="Messages\GetUsersCommand.cs" />
+    <Compile Include="Messages\FollowUserCommand.cs" />
+    <Compile Include="Messages\GetPeopleCommand.cs" />
+    <Compile Include="Messages\Results.cs" />
     <Compile Include="Messages\StartNewSessionCommand.cs" />
     <Compile Include="Messages\NewUserConnected.cs" />
+    <Compile Include="Messages\UnfollowUserCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -19,6 +19,12 @@ namespace Twitter.Web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                "PeopleApi",
+                "api/People/{username}",
+                new { controller = "People", username = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{controller}/{id}",
                 new { id = RouteParameter.Optional }
