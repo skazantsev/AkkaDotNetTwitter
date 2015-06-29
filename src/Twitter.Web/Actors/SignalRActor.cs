@@ -19,6 +19,7 @@ namespace Twitter.Web.Actors
 
             Receive<StartNewSessionCommand>(x => _remoteApiActor.Tell(x));
             Receive<NewUserConnected>(x => _userHub.NewUserConnected(x.Username));
+            Receive<NewMessagePosted>(x => _userHub.NewMessagePosted(x.Username, x.Message));
         }
 
         protected override void PreStart()

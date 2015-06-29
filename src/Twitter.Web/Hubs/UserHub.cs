@@ -11,5 +11,11 @@ namespace Twitter.Web.Hubs
             var context = GlobalHost.ConnectionManager.GetHubContext<UserHub>();
             context.Clients.All.userConnected(username);
         }
+
+        public void NewMessagePosted(string username, string message)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<UserHub>();
+            context.Clients.All.messagePosted(username, message);
+        }
     }
 }

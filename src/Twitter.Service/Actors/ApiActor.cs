@@ -22,6 +22,8 @@ namespace Twitter.Service.Actors
             Receive<FollowUserCommand>(x => ChangeFolloweeImpl(x.Follower, x.Followee, true));
 
             Receive<UnfollowUserCommand>(x => ChangeFolloweeImpl(x.Follower, x.Followee, false));
+
+            Receive<NewMessagePosted>(x => BroadcastToFollowers(x, x.Username));
         }
 
         #region private messages
@@ -33,19 +35,9 @@ namespace Twitter.Service.Actors
 
             if (user.Sessions.Count() <= 1)
             {
-                BroadcastNewUserConnected(userSession.Username);
+                BroadcastToEveryone(new NewUserConnected(userSession.Username));
             }
-        }
-
-        private void BroadcastNewUserConnected(string username)
-        {
-            var broadcastTo = Users.SelectMany(x => x.Value.Sessions).Where(x => !x.Requestor.Equals(ActorRefs.Nobody));
-
-            foreach (var session in broadcastTo)
-            {
-                session.Requestor.Tell(new NewUserConnected(username));
-            }
-        }
+        }        
 
         private void GetPeopleImpl(string username)
         {
@@ -76,16 +68,18 @@ namespace Twitter.Service.Actors
         // ReSharper disable RedundantIfElseBlock
         private void ChangeFolloweeImpl(string follower, string followee, bool isFollowed)
         {
-            User user;
-            if (Users.TryGetValue(follower, out user))
+            User followerUser, followeeUser;
+            if (Users.TryGetValue(follower, out followerUser) && Users.TryGetValue(followee, out followeeUser))
             {
                 if (isFollowed)
                 {
-                    user.Follow(followee);
+                    followerUser.Follow(followee);
+                    followeeUser.AddFollower(follower);
                 }
                 else
                 {
-                    user.Unfollow(followee);
+                    followerUser.Unfollow(followee);
+                    followeeUser.RemoveFollower(follower);
                 }
                 Sender.Tell(new Results.SuccessResult());
             }
@@ -95,6 +89,32 @@ namespace Twitter.Service.Actors
             }
         }
         // ReSharper restore RedundantIfElseBlock
+
+        private void BroadcastToEveryone<T>(T message)
+        {
+            var broadcastTo = Users.SelectMany(x => x.Value.Sessions).Where(x => !x.Requestor.Equals(ActorRefs.Nobody));
+            foreach (var session in broadcastTo)
+            {
+                session.Requestor.Tell(message);
+            }
+        }
+
+        private void BroadcastToFollowers<T>(T message, string followee)
+        {
+            User followeeUser;
+            if (!Users.TryGetValue(followee, out followeeUser))
+                return;
+
+            var broadcastTo = Users
+                .Join(followeeUser.Followers, user => user.Key, follower => follower, (user, followers) => user)
+                .SelectMany(x => x.Value.Sessions)
+                .Where(x => !x.Requestor.Equals(ActorRefs.Nobody));
+
+            foreach (var session in broadcastTo)
+            {
+                session.Requestor.Tell(message);
+            }
+        }
 
         #endregion
     }

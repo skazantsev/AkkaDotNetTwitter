@@ -18,6 +18,10 @@
             this.userHub.client.userConnected = function (username) {
                 app.users.add(new app.User({ username: username, isFollowed: false }));
             };
+            this.userHub.client.messagePosted = function (username, message) {
+                // TODO: Redesigned
+                $('#tweets').append('<li><strong>' + username + '</strong>: ' + message + '</li>');
+            };
 
             $.connection.hub.start().done(function () {
                 app.users.fetch({ reset: true });

@@ -54,6 +54,7 @@
     <Compile Include="Business\UserSession.cs" />
     <Compile Include="Messages\FollowUserCommand.cs" />
     <Compile Include="Messages\GetPeopleCommand.cs" />
+    <Compile Include="Messages\NewMessagePosted.cs" />
     <Compile Include="Messages\Results.cs" />
     <Compile Include="Messages\StartNewSessionCommand.cs" />
     <Compile Include="Messages\NewUserConnected.cs" />
