@@ -33,5 +33,11 @@
         </div>
         <% }); %>
     </script>
+    <script type="text/template" id="tweetTemplate">
+        <li>
+            <strong><%= username %></strong>:
+            <span><%= text %></span>
+        </li>
+    </script>
     @Scripts.Render("~/bundles/app")
 }

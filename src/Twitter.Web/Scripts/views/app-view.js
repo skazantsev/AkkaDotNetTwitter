@@ -1,5 +1,6 @@
 ﻿var app = app || {};
 
+// TODO: delegate responsibilities to inner views
 (function ($) {
     'use strict';
 
@@ -7,6 +8,7 @@
         el: '#twitterApp',
 
         usersTemplate: _.template($('#usersTemplate').html()),
+        tweetTemplate: _.template($('#tweetTemplate').html()),
 
         events: {
             'click .js-follow-btn': 'followUser',
@@ -15,30 +17,41 @@
 
         initialize: function () {
             this.userHub = $.connection.userHub;
+
             this.userHub.client.userConnected = function (username) {
                 app.users.add(new app.User({ username: username, isFollowed: false }));
-            };
+            }.bind(this);
+
             this.userHub.client.messagePosted = function (username, message) {
-                // TODO: Redesigned
-                $('#tweets').append('<li><strong>' + username + '</strong>: ' + message + '</li>');
-            };
+                app.tweets.add(new app.Tweet({ username: username, text: message }));
+            }.bind(this);
 
             $.connection.hub.start().done(function () {
                 app.users.fetch({ reset: true });
             });
 
             this.$usersRoot = this.$('#users');
+            this.$tweetsRoot = this.$('#tweets');
 
             this.listenTo(app.users, 'add', this.render);
             this.listenTo(app.users, 'change', this.render);
             this.listenTo(app.users, 'reset', this.render);
-        },
 
+            this.listenTo(app.tweets, 'add', this.renderTweet);
+        },
+        
         render: function() {
             this.$usersRoot.html(this.usersTemplate({
                 users: app.users.toJSON()
             }));
             return this;
+        },
+
+        renderTweet: function (tweet) {
+            this.$tweetsRoot.prepend(this.tweetTemplate({
+                username: tweet.get('username'),
+                text: tweet.get('text')
+            }));
         },
 
         followUser: function (e) {
