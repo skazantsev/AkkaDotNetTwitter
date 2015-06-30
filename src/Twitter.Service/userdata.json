@@ -1,0 +1,62 @@
+﻿[
+    {
+        "username": "Friedrich Nietzsche",
+        "messages": [
+            "It is hard enough to remember my opinions, without also remembering my reasons for them!",
+            "In heaven all the interesting people are missing.",
+            "Talking much about oneself can also be a means to conceal oneself.",
+            "Maturity consists in having rediscovered the seriousness one had as a child at play.",
+            "And those who were seen dancing were thought to be insane by those who could not hear the music.",
+            "There is always some madness in love. But there is also always some reason in madness.",
+            "For men are not equal: thus speaks justice.",
+            "Out of life's school of war: What does not destroy me, makes me stronger.",
+            "We love life, not because we are used to living but because we are used to loving.",
+            "Without music, life would be a mistake."
+        ]
+    },
+    {
+        "username": "William Shakespeare",
+        "messages": [
+            "The quality of mercy",
+            "If music be the food of love; play on.",
+            "Parting is such sweet sorrow.",
+            "We have seen better days.",
+            "For I have sworn thee fair, and thought thee bright, who art as black as hell, as dark as night.",
+            "Love to faults is always blind, always is to joy inclined. Lawless, winged, and unconfined, and breaks all chains from every mind.",
+            "Virtue and genuine graces in themselves speak what no words can utter.",
+            "As he was valiant, I honor him. But as he was ambitious, I slew him.",
+            "What's past is prologue",
+            "We know what we are, but know not what we may be."
+        ]
+    },
+    {
+        "username": "Mark Twain",
+        "messages": [
+            "A banker is a fellow who lends you his umbrella when the sun is shining, but wants it back the minute it begins to rain.",
+            "A man cannot be comfortable without his own approval.",
+            "Fiction is obliged to stick to possibilities. Truth isn't.",
+            "Don't go around saying the world owes you a living. The world owes you nothing. It was here first.",
+            "Courage is resistance to fear, mastery of fear - not absence of fear.",
+            "Let us so live that when we come to die even the undertaker will be sorry.",
+            "I didn't attend the funeral, but I sent a nice letter saying that I approved of it.",
+            "If all men knew what each said of the other, there would not be four friends in the world.",
+            "My mother had a great deal of trouble with me, but I think she enjoyed it.",
+            "Habit is habit, and not to be flung out the window by man, but coaxed downstairs, a step at a time."
+        ]
+    },
+    { 
+        "username": "Thomas Jefferson",
+        "messages": [
+            "Do not bite at the bait of pleasure till you know there is no hook beneath it.",
+            "I'm a great believer in luck, and I find the harder I work the more I have of it.",
+            "Never trouble another for what you can do for yourself.",
+            "Honesty is the first chapter of the book of wisdom.",
+            "Every difference of opinion is not a difference of principle.",
+            "I would rather be exposed to the inconveniencies attending too much liberty than those attending too small a degree of it.",
+            "If our house be on fire, without inquiring whether it was fired from within or without, we must try to extinguish it.",
+            "Advertisements... contain the only truths to be relied on in a newspaper.",
+            "Delay is preferable to error.",
+            "Walking is the best possible exercise. Habituate yourself to walk very far."
+        ]
+    }
+]
