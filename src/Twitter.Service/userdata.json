@@ -44,7 +44,7 @@
             "Habit is habit, and not to be flung out the window by man, but coaxed downstairs, a step at a time."
         ]
     },
-    { 
+    {
         "username": "Thomas Jefferson",
         "messages": [
             "Do not bite at the bait of pleasure till you know there is no hook beneath it.",
@@ -57,6 +57,12 @@
             "Advertisements... contain the only truths to be relied on in a newspaper.",
             "Delay is preferable to error.",
             "Walking is the best possible exercise. Habituate yourself to walk very far."
+        ]
+    },
+    { 
+        "username": "Anonymous <script>alert('XSS');</script>",
+        "messages": [
+            "Give me your cookies! <script>alert('XSS');</script>"
         ]
     }
 ]

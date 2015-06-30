@@ -21,9 +21,9 @@
     <script type="text/template" id="usersTemplate">
         <% _.each(users, function(user) { %>
         <div class="js-user-row row">
-            <div class="col-md-8"><%= user.username %></div>
+            <div class="col-md-8"><%- user.username %></div>
             <div class="col-md-4">
-                <input name="username" type="hidden" class="js-username" value="<%= user.username %>" />
+                <input name="username" type="hidden" class="js-username" value="<%- user.username %>" />
                 <% if (user.isFollowed) { %>
                 <button type="button" class="js-unfollow-btn btn btn-danger">Unfollow</button>
                 <% } else { %>
@@ -35,8 +35,8 @@
     </script>
     <script type="text/template" id="tweetTemplate">
         <li>
-            <strong><%= username %></strong>:
-            <span><%= text %></span>
+            <strong><%- username %></strong>:
+            <span><%- text %></span>
         </li>
     </script>
     @Scripts.Render("~/bundles/app")

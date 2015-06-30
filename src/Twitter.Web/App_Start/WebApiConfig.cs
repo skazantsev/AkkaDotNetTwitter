@@ -20,13 +20,13 @@ namespace Twitter.Web
 
             config.Routes.MapHttpRoute(
                 "PeopleApi",
-                "api/People/{username}",
+                "api/People/{*username}",
                 new { controller = "People", username = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",
-                "api/{controller}/{id}",
+                "api/{controller}/{*id}",
                 new { id = RouteParameter.Optional }
             );
         }

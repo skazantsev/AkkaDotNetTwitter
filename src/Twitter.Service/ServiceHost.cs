@@ -43,7 +43,7 @@ namespace Twitter.Service
                 {
                     for (var i = 0; i < 1000; ++i)
                     {
-                        Thread.Sleep(rand.Next(200, 1000));
+                        Thread.Sleep(rand.Next(1000, 2000));
                         var userIndex = rand.Next(0, users.Count);
                         SystemActors.ApiActor.Tell(new NewMessagePosted(users[userIndex].Username, users[userIndex].Messages[i % users[userIndex].Messages.Count]));
                     }
