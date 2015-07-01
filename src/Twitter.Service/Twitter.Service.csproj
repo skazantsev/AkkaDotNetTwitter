@@ -74,6 +74,7 @@
     <Compile Include="Actors\ApiActor.cs" />
     <Compile Include="Actors\SystemActors.cs" />
     <Compile Include="Business\User.cs" />
+    <Compile Include="Components\TwitterFeedEmulator.cs" />
     <Compile Include="ServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
