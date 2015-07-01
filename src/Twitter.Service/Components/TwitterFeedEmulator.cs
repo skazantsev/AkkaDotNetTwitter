@@ -45,16 +45,16 @@ namespace Twitter.Service.Components
             {
                 Thread.Sleep(rand.Next(1000, 2000));
                 var user = _users[rand.Next(0, _users.Count)];
-                SystemActors.ApiActor.Tell(new NewMessagePosted(user.Username, user.Messages[i % user.Messages.Count]));
+                SystemActors.ApiActor.Tell(new NewTweetPosted(user.Username, user.Tweets[i % user.Tweets.Count]));
             }
-            SystemActors.ApiActor.Tell(new NewMessagePosted("UFO", "The emulator has finished its work"));
+            SystemActors.ApiActor.Tell(new NewTweetPosted("UFO", "The emulator has finished its work"));
         }
 
         protected class UserData
         {
             public string Username { get; set; }
 
-            public List<string> Messages { get; set; }
+            public List<string> Tweets { get; set; }
         }
     }
 }

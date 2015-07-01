@@ -1,7 +1,7 @@
 ﻿[
     {
         "username": "Friedrich Nietzsche",
-        "messages": [
+        "tweets": [
             "It is hard enough to remember my opinions, without also remembering my reasons for them!",
             "In heaven all the interesting people are missing.",
             "Talking much about oneself can also be a means to conceal oneself.",
@@ -16,7 +16,7 @@
     },
     {
         "username": "William Shakespeare",
-        "messages": [
+        "tweets": [
             "The quality of mercy",
             "If music be the food of love; play on.",
             "Parting is such sweet sorrow.",
@@ -31,7 +31,7 @@
     },
     {
         "username": "Mark Twain",
-        "messages": [
+        "tweets": [
             "A banker is a fellow who lends you his umbrella when the sun is shining, but wants it back the minute it begins to rain.",
             "A man cannot be comfortable without his own approval.",
             "Fiction is obliged to stick to possibilities. Truth isn't.",
@@ -46,7 +46,7 @@
     },
     {
         "username": "Thomas Jefferson",
-        "messages": [
+        "tweets": [
             "Do not bite at the bait of pleasure till you know there is no hook beneath it.",
             "I'm a great believer in luck, and I find the harder I work the more I have of it.",
             "Never trouble another for what you can do for yourself.",
@@ -61,7 +61,7 @@
     },
     { 
         "username": "Anonymous <script>alert('XSS');</script>",
-        "messages": [
+        "tweets": [
             "Give me your cookies! <script>alert('XSS');</script>"
         ]
     }

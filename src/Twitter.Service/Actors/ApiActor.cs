@@ -23,7 +23,7 @@ namespace Twitter.Service.Actors
 
             Receive<UnfollowUserCommand>(x => ChangeFolloweeImpl(x.Follower, x.Followee, false));
 
-            Receive<NewMessagePosted>(x => BroadcastToFollowers(x, x.Username));
+            Receive<NewTweetPosted>(x => BroadcastToFollowers(x, x.Username));
         }
 
         #region private messages
