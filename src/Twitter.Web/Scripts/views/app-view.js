@@ -22,8 +22,8 @@
                 app.users.add(new app.User({ username: username, isFollowed: false }));
             }.bind(this);
 
-            this.userHub.client.messagePosted = function (username, message) {
-                app.tweets.add(new app.Tweet({ username: username, text: message }));
+            this.userHub.client.tweetPosted = function (username, text) {
+                app.tweets.add(new app.Tweet({ username: username, text: text }));
             }.bind(this);
 
             $.connection.hub.start().done(function () {

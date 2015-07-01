@@ -12,10 +12,10 @@ namespace Twitter.Web.Hubs
             context.Clients.All.userConnected(username);
         }
 
-        public void NewMessagePosted(string username, string message)
+        public void NewTweetPosted(string username, string tweetText)
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<UserHub>();
-            context.Clients.All.messagePosted(username, message);
+            context.Clients.All.tweetPosted(username, tweetText);
         }
     }
 }
